@@ -2,11 +2,18 @@
 class Araba2 {
     public $marka;
     public $model;
+    
+    private $veriler = [];
 
     public function __construct($marka,$model)
     {
         $this->marka = $marka;
         $this->model = $model;
+    }
+
+    public function __set($name,$value) { // __set() değeri içerisine key ve value değerleri girilir ve bu sayede nesnede olmayan özellikler eklenebilir.
+        $this->veriler[$name] = $value;
+
     }
 
     public function __toString() {
@@ -16,8 +23,6 @@ class Araba2 {
     public function __get($name) { // __get() metodu bizim oluşturmuş olduğumuz nesnede , olmayan bir özelliğe atama yaparsak o zaman bu metot çalışır.
         return "Bu proporty mevcut değil" . $name;
     }
-
-    // Bir de __get() metodu gibi çalışan call() metodu vardır.
 
     public function bilgileriGoster() {
         return $this->marka . ' ' . $this->model;
